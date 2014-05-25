@@ -41,7 +41,8 @@ var app = {
         this.exportRoot.Knap1_mc.addEventListener("click", this.knapClick);
         this.exportRoot.Knap1_mc.mouseEnabled=true;
 
-        this.stage.enableMouseOver(50);
+        this.exportRoot.Knap1_mc.on("touchstart", this.knapClick);
+        //this.stage.enableMouseOver(50);
         this.stage.addChild(this.exportRoot);
         this.stage.update();
         createjs.Ticker.setFPS(lib.properties.fps);
