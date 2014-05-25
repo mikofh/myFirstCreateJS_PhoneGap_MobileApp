@@ -33,7 +33,7 @@ var app = {
         this.fly_y = this.exportRoot.Man1_mc.y;
         //touch
         this.stage = new createjs.Stage(this.canvas);
-        createjs.Touch.enable(this.stage);
+        //createjs.Touch.enable(this.stage);
 
         this.exportRoot.Man1_mc.addEventListener("click", this.flyStop);
         this.exportRoot.Man1_mc.mouseEnabled=true;
