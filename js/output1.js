@@ -4,8 +4,8 @@ var p; // shortcut to reference prototypes
 
 // library properties:
 lib.properties = {
-	width: 400,
-	height: 400,
+	width: 1000,
+	height: 1000,
 	fps: 24,
 	color: "#FFFFFF",
 	manifest: []
@@ -17,24 +17,24 @@ lib.properties = {
 
 	// Layer 2
 	this.Knap1_mc = new lib.knap1_mc();
-	this.Knap1_mc.setTransform(143.1,272.3,1,1,0,0,0,50,73.7);
+	this.Knap1_mc.setTransform(173.4,843.4,2.01,2.01,0,0,0,50,73.9);
 
 	// Layer 1
 	this.Man1_mc = new lib.man1_mc();
-	this.Man1_mc.setTransform(135,103.2);
+	this.Man1_mc.setTransform(135,172,3.41,3.41);
 
 	// Layer 3
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f().s("#0033FF").ss(1,1,1).p("A/s/dMA/ZAAAMAAAA+7Mg/ZAAAg");
-	this.shape.setTransform(202,199.5);
+	this.shape.setTransform(502.7,498,2.482,2.482);
 
 	this.shape_1 = new cjs.Shape();
 	this.shape_1.graphics.f("#0066FF").s().p("A/sfeMAAAg+7MA/ZAAAMAAAA+7g");
-	this.shape_1.setTransform(202,199.5);
+	this.shape_1.setTransform(502.7,498,2.482,2.482);
 
 	this.addChild(this.shape_1,this.shape,this.Man1_mc,this.Knap1_mc);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(198,197,408,405);
+p.nominalBounds = new cjs.Rectangle(464.5,497,1043,1002);
 
 
 // symbols:
