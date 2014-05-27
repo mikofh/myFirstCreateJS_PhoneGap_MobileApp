@@ -22,27 +22,34 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <script src="js/easeljs-0.7.0.min.js"></script>
+        <script src="libs/easeljs-0.7.0.min.js"></script>
+        <script src="libs/tweenjs-0.5.0.min.js"></script>
+        <script src="libs/movieclip-0.7.0.min.js"></script>
+        <script src="libs/preloadjs-0.4.0.min.js"></script>
         <script src="js/output1.js"></script>
+        <script src="js/menu1.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             function onLoad() {
-                document.addEventListener("deviceready", onDeviceReady, false);
+                //uncomment below
+                //document.addEventListener("deviceready", onDeviceReady, false);
                 // Now safe to use device APIs
                 
+                app.newInitialize();//comment this line out 
             }
             function onDeviceReady() {
                 document.addEventListener("resume", onResume, false);
                 document.addEventListener("pause", onPause, false);
-                app.initialize();
+                //app.initialize(); //uncomment before this
             }
             function onPause() {
                // Handle the pause event
-
+               app.saveData();
             }
             function onResume() {
                 // Handle the resume event
+                app.startAfterResume();
             }
         </script>
         <link rel="stylesheet" type="text/css" href="css/index.css" />

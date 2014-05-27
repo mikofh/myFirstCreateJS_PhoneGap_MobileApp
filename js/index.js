@@ -1,4 +1,4 @@
-/*
+ /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -26,7 +26,10 @@ var app = {
         this.fly=false;
         this.counter = 0;
         this.canvas = document.getElementById("canvas");
+        //hent side 1. 
         this.exportRoot = new lib.output1();
+
+        
         //miko ok alert(this.exportRoot.Man1_mc.x);
         //gem original position
         this.fly_x = this.exportRoot.Man1_mc.x;
@@ -47,6 +50,69 @@ var app = {
         this.stage.update();
         createjs.Ticker.setFPS(lib.properties.fps);
         createjs.Ticker.addEventListener("tick", this.handleTick);
+    },
+    newInitialize: function() {
+        this.bindEvents();
+
+        this.canvas = document.getElementById("canvas");
+
+        this.rotate=false;
+        this.fly=false;
+        this.counter = 0;
+        this.exportRoot = new lib.output1();
+        this.fly_x = this.exportRoot.Man1_mc.x;
+        this.fly_y = this.exportRoot.Man1_mc.y;
+
+        this.stage = new createjs.Stage(this.canvas);
+
+        this.exportRoot.Man1_mc.addEventListener("click", this.flyStop);
+        this.exportRoot.Man1_mc.mouseEnabled=true;
+
+        this.exportRoot.Knap1_mc.addEventListener("click", this.knapClick);
+        this.exportRoot.Knap1_mc.mouseEnabled=true;
+
+        this.exportRoot.Knap1_mc.on("touchstart", this.knapClick);
+        //this.stage.enableMouseOver(50);
+        this.stage.addChild(this.exportRoot);
+        this.stage.update();
+
+        
+        this.images = images||{};
+        this.menu1 = null;//new lib.menu1();
+        //this.stage = null;//new createjs.Stage(this.canvas);
+        this.loader = new createjs.LoadQueue(false);
+        this.loader.addEventListener("fileload", this.handleFileLoad);
+        this.loader.addEventListener("complete", this.handleComplete);
+        this.loader.loadManifest(lib.properties.manifest);
+
+        
+        //this.stage.addChild(this.menu1);
+        //this.stage.update();
+        //createjs.Ticker.setFPS(lib.properties.fps);
+        //createjs.Ticker.addEventListener("tick", this.handleTick1);
+    },
+    handleFileLoad: function(evt) {
+        if (evt.item.type == "image") { app.images[evt.item.id] = evt.result; }
+    },
+    handleComplete: function() {
+
+        app.menu1  = new lib.menu1();
+
+        //app.stage = new createjs.Stage(app.canvas);
+        app.stage.addChild(app.menu1);
+        app.stage.update();
+
+        createjs.Ticker.setFPS(lib.properties.fps);
+        createjs.Ticker.addEventListener("tick", app.handleTick);
+        app.menu1.Knap1a_mc.gotoAndPlay(1);
+    },
+    saveData: function() {
+        //this is onPause from device
+
+    },
+    startAfterResume: function() {
+        //this is resume after pause from device
+
     },
     knapClick: function() {
         app.counter++;
@@ -70,18 +136,13 @@ var app = {
         app.exportRoot.Man1_mc.x = app.fly_x;
         app.exportRoot.Man1_mc.y = app.fly_y;
     },
+    handleTick1: function() {
+        app.stage.update();
+    },
     handleTick: function() {
         //this refererer her til function handleTick, så app variabel
         //man kan bare skrive app direkte og slippe for this.
-        /*
-        if (this.app.rotate == true) {
-            //alert(this.app.exportRoot.Man1_mc.Rotor1_mc.rotation);
-            app.exportRoot.Man1_mc.Rotor1_mc.rotation += 15;
-            //this.app.rotate = false;
-            //husk update ellers sker der intet
-            app.stage.update();
-        }
-        */
+        
          if (app.fly==true){
             //alert("now we must fly");
             app.exportRoot.Man1_mc.Rotor1_mc.rotation+=20;
